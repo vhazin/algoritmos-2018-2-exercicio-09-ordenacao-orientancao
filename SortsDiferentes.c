@@ -138,7 +138,7 @@ int main(){
 	selectionSort(arr, n);
     clock_t end = clock();
 	printf("Sorted array: \n");
-	printArray(arr, n);
+	//printArray(arr, n);
     time_selection +=(double)(end - begin)/CLOCKS_PER_SEC;
 
     for (temp = 0;temp<n;temp++){
@@ -150,7 +150,7 @@ int main(){
 	insertionSort(arr, n);
     end = clock();
 	printf("Sorted array: \n");
-	printArray(arr, n);
+	//printArray(arr, n);
     time_insertion +=(double)(end - begin)/CLOCKS_PER_SEC;
 
     for (temp = 0;temp<n;temp++){
@@ -162,7 +162,7 @@ int main(){
 	bubbleSort(arr, n);
     end = clock();
 	printf("Bubble Sorted array: \n");
-	printArray(arr, n);
+	//printArray(arr, n);
     time_bubble +=(double)(end - begin)/CLOCKS_PER_SEC;
 
     for (temp = 0;temp<n;temp++){
@@ -174,7 +174,7 @@ int main(){
 	heapSort(arr, n);
     end = clock();
 	printf("Heap Sorted array: \n");
-	printArray(arr, n);
+	//printArray(arr, n);
     time_heapy +=(double)(end - begin)/CLOCKS_PER_SEC;
 
     for (temp = 0;temp<n;temp++){
@@ -186,9 +186,10 @@ int main(){
 	mergeSort(arr,0, n);
     end = clock();
 	printf("Merge Sorted array: \n");
-	printArray(arr, n);
+	//printArray(arr, n);
     time_merge +=(double)(end - begin)/CLOCKS_PER_SEC;
 
+    printArray(arr, n);
     printf("Tempo gasto para %d numeros\n",n);
     printf("Tempo gasto para Selection Sort = %f segundos\n",time_selection);
     printf("Tempo gasto para Insertion Sort = %f segundos\n",time_insertion);
