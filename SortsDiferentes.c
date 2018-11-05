@@ -189,6 +189,7 @@ int main(){
 	printArray(arr, n);
     time_merge +=(double)(end - begin)/CLOCKS_PER_SEC;
 
+    printf("Tempo gasto para %d numeros\n",n);
     printf("Tempo gasto para Selection Sort = %f segundos\n",time_selection);
     printf("Tempo gasto para Insertion Sort = %f segundos\n",time_insertion);
     printf("Tempo gasto para Bubble Sort = %f segundos\n",time_bubble);
