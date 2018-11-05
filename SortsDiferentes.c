@@ -137,7 +137,7 @@ int main(){
     clock_t begin = clock();
 	selectionSort(arr, n);
     clock_t end = clock();
-	printf("Sorted array: \n");
+	printf("Selection Sorted array: \n");
 	//printArray(arr, n);
     time_selection +=(double)(end - begin)/CLOCKS_PER_SEC;
 
@@ -149,7 +149,7 @@ int main(){
     begin = clock();
 	insertionSort(arr, n);
     end = clock();
-	printf("Sorted array: \n");
+	printf("Insertion Sorted array: \n");
 	//printArray(arr, n);
     time_insertion +=(double)(end - begin)/CLOCKS_PER_SEC;
 
