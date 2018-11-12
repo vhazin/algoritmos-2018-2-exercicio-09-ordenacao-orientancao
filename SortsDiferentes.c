@@ -111,12 +111,48 @@ void mergeSort(int arr[], int l, int r){
 	}
 }
 
+int partition (int arr[], int low, int high){
+    int j;
+    int i = (low - 1);
+    for (j = low; j <= high- 1; j++){
+        if (arr[j] <= arr[high]){
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    swap(&arr[i + 1], &arr[high]);
+    return (i + 1);
+}
+
+void quickSort(int arr[], int low, int high){
+	if (low < high){
+		int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+		quickSort(arr, pi + 1, high);
+	}
+}
+
 void printArray(int arr[], int size){
 	int i;
 	for (i=0; i < size; i++)
 		printf("%d ", arr[i]);
 	printf("\n");
 }
+
+int randomizedPartition (int arr[], int low, int high){
+    int i = rand() % (high + 1 - low) + low;
+    swap(&arr[low], &arr[i]);
+    return partition(arr,low,high);
+}
+
+void randomQuickSort(int arr[], int low, int high){
+	if (low < high){
+		int pi = randomizedPartition(arr, low, high);
+        randomQuickSort(arr, low, pi - 1);
+		randomQuickSort(arr, pi + 1, high);
+	}
+}
+
 
 int main(){
    	int n , x;
@@ -134,10 +170,10 @@ int main(){
     printf("array inicial\n->");
     printArray(base,n);
     double time_selection=0.0;
+   	printf("Selection Sorted array: \n");
     clock_t begin = clock();
 	selectionSort(arr, n);
     clock_t end = clock();
-	printf("Selection Sorted array: \n");
 	//printArray(arr, n);
     time_selection +=(double)(end - begin)/CLOCKS_PER_SEC;
 
@@ -146,10 +182,10 @@ int main(){
     }
 
     double time_insertion=0.0;
+    printf("Insertion Sorted array: \n");
     begin = clock();
 	insertionSort(arr, n);
     end = clock();
-	printf("Insertion Sorted array: \n");
 	//printArray(arr, n);
     time_insertion +=(double)(end - begin)/CLOCKS_PER_SEC;
 
@@ -158,10 +194,10 @@ int main(){
     }
 
     double time_bubble=0.0;
+    printf("Bubble Sorted array: \n");
     begin = clock();
 	bubbleSort(arr, n);
     end = clock();
-	printf("Bubble Sorted array: \n");
 	//printArray(arr, n);
     time_bubble +=(double)(end - begin)/CLOCKS_PER_SEC;
 
@@ -170,10 +206,10 @@ int main(){
     }
 
     double time_heapy=0.0;
+    printf("Heap Sorted array: \n");
     begin = clock();
 	heapSort(arr, n);
     end = clock();
-	printf("Heap Sorted array: \n");
 	//printArray(arr, n);
     time_heapy +=(double)(end - begin)/CLOCKS_PER_SEC;
 
@@ -182,12 +218,37 @@ int main(){
     }
 
     double time_merge=0.0;
+    printf("Merge Sorted array: \n");
     begin = clock();
 	mergeSort(arr,0, n);
     end = clock();
-	printf("Merge Sorted array: \n");
 	//printArray(arr, n);
     time_merge +=(double)(end - begin)/CLOCKS_PER_SEC;
+
+    for (temp = 0;temp<n;temp++){
+        arr[temp]=base[temp];
+    }
+
+    double time_quick=0.0;
+    printf("Quick Sorted array pivot = ultimo elemento: \n");
+    begin = clock();
+	quickSort(arr,0, n-1);
+    end = clock();
+	//printArray(arr, n);
+    time_quick +=(double)(end - begin)/CLOCKS_PER_SEC;
+
+
+   for (temp = 0;temp<n;temp++){
+        arr[temp]=base[temp];
+    }
+
+    double time_quickRandom=0.0;
+    printf("Quick Sorted array pivot = elatorio: \n");
+    begin = clock();
+	randomQuickSort(arr,0, n-1);
+    end = clock();
+	//printArray(arr, n);
+    time_quickRandom +=(double)(end - begin)/CLOCKS_PER_SEC;
 
     printArray(arr, n);
     printf("Tempo gasto para %d numeros\n",n);
@@ -196,6 +257,8 @@ int main(){
     printf("Tempo gasto para Bubble Sort = %f segundos\n",time_bubble);
     printf("Tempo gasto para Heap Sort = %f segundos\n",time_heapy);
     printf("Tempo gasto para Merge Sort = %f segundos\n",time_merge);
+    printf("Tempo gasto para Quick Sort ultimo elemento = %f segundos\n",time_quick);
+    printf("Tempo gasto para Quick Sort pivo random = %f segundos\n",time_quickRandom);
 
 	return 0;
 }
